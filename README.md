@@ -13,7 +13,7 @@ This template should help get you started developing with Vue 3 in Vite.
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Project Setup
+## Project Setup (natively)
 
 ```sh
 npm install
@@ -30,4 +30,23 @@ npm run dev
 ```sh
 npm run build
 ```
+
+## Project Dockerized Setup (for Production)
+```sh
+docker build -t docker-vue .
+```
+### To check if built up properly
+```
+docker image ls
+```
+The output should be something similar as below:
+``` 
+REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
+docker-vue    latest    dd8981d68791   x seconds ago   yMB
+```
+To run the container:
+```
+docker run -p 8080:8080 -d docker-vue
+```
+
 >>>>>>> dev
