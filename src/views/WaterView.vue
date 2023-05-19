@@ -4,7 +4,7 @@
 
 <template>
     <div class="frame">
-        <div class="test"> this is the home view</div>
+        <div class="test"> this is the water view</div>
     </div>
 </template>
 
