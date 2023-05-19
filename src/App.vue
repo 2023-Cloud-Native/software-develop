@@ -5,15 +5,16 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
+    <RouterLink to="/">
+      <img class="TSMC logo" src="@/assets/TSMC_logo.png" width="100" height="100" />
+    </RouterLink>
+    <div class="title"> 廠區能源使用狀況</div>
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/water">Water</RouterLink>
+        <RouterLink to="/">總覽</RouterLink>
+        <RouterLink to="/power">電力</RouterLink>
+        <RouterLink to="/water">水利</RouterLink>
+        <RouterLink to="/earthquake">地震</RouterLink>
       </nav>
     </div>
   </header>
@@ -21,22 +22,47 @@ import HelloWorld from './components/HelloWorld.vue'
   <RouterView />
 </template>
 
-<style scoped>
+<style>
 header {
-  line-height: 1.5;
-  max-height: 100vh;
+  width: 100%;
+  height: 140px;
+  background-color: #97CBFF ;
+  display: flex;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+
+.TSMC{
+  justify-content: flex-start;
+  display: flex;
+  margin-top: 20px;
+  margin-left: 100px;
 }
 
+.title{
+  width: 700px;
+  text-align: center;
+  margin: 40px;
+  font-size: 40px;
+}
+
+.wrapper{
+  display: flex;
+  justify-content: flex-end;
+  line-height: 25px;
+  width: 100%;
+}
 nav {
   width: 100%;
-  font-size: 12px;
+  font-weight: normal;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 50px;
+  justify-content: flex-end;
+  display: flex;
+  margin-right: 50px;
+}
+
+a{
+  text-decoration: none !important;
 }
 
 nav a.router-link-exact-active {
@@ -57,30 +83,4 @@ nav a:first-of-type {
   border: 0;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>

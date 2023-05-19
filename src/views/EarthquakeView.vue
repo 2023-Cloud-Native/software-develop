@@ -1,16 +1,10 @@
 <script setup>
-  import LineChart from '../components/LineChart.vue'
-</script>
-
-<template>
-  <LineChart />
-</template>
 
 </script>
 
 <template>
     <div class="frame">
-        <div class="test"> this is the water view</div>
+        <div class="test"> this is the earthquake view</div>
     </div>
 </template>
 
