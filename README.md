@@ -44,7 +44,7 @@ The output should be something similar as below:
 REPOSITORY    TAG       IMAGE ID       CREATED          SIZE
 docker-vue    latest    dd8981d68791   x seconds ago   yMB
 ```
-To run the container:
+### To run the container
 ```
 docker run -p 8080:8080 -d docker-vue
 ```
