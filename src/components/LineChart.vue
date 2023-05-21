@@ -1,5 +1,7 @@
 <template>
-    <Line :data="data" :options="options"/>
+    <div :style="componentStyles">
+      <Line :data="data" :options="options"/>
+    </div>
 </template>
   
 <script lang="ts">
@@ -18,6 +20,29 @@
     components: { Line },
     data() {
       return chartConfig
+    },
+    props: {
+      phoneHeight: {
+        type: String,
+        default: '300px'
+      },
+      desktopHeight: {
+        type: String,
+        default: '500px'
+      }
+  },
+  computed: {
+    componentStyles() {
+      return {
+        margin: "auto",
+        padding: this.isDesktop ? "4em" : "0",
+        width: "90%",
+        height: this.isDesktop ? this.desktopHeight : this.phoneHeight
+      };
+    },
+    isDesktop() {
+      return window.innerWidth >= 768;
     }
+  }
   }
 </script>

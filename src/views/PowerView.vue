@@ -1,10 +1,11 @@
 <script setup>
-
+    import LineChart from '../components/LineChart.vue'
 </script>
 
 <template>
     <div class="frame">
-        <div class="test"> this is the power view</div>
+      <h2>This is the power view</h2>
+        <LineChart />
     </div>
 </template>
 
