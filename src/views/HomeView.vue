@@ -113,7 +113,7 @@ export default{
 
 <style scoped>
 .frame{
-    width: 100%;
+    width:auto;
     height: fit-content;
     margin: 0px;
 }
