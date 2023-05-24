@@ -1,10 +1,93 @@
 <script>
-import { RouterLink, RouterView } from 'vue-router'
+import water_unit from '@/components/overview/water_unit.vue';
+import power_unit from '../components/overview/power_unit.vue';
+import earthquake_unit from '../components/overview/earthquake_unit.vue';
 
 export default{
+    components: {
+        water_unit,
+        power_unit,
+        earthquake_unit
+  },
     data() {
         return {
-            title: ["桃園", "竹科", "中科", "南科"]
+            datas: [
+                {
+                    area: "桃園廠",
+                    water:{
+                        number: 1,
+                        capacity: 2000.0,
+                        storage_now: 1000.0,
+                        storage_before: 900.0
+                    },
+                    power: {
+                        pow_gen: 1000.0,
+                        pow_use: 700.0
+                    },
+                    earthquake: {
+                        deg: 1
+                    }
+                }, 
+                {
+                    area: "竹科廠",
+                    water:{
+                        number: 3,
+                        capacity: 2000.0,
+                        storage_now: 20.0,
+                        storage_before: 100.0
+                    },
+                    power: {
+                        pow_gen: 1000.0,
+                        pow_use: 500.0
+                    },
+                    earthquake: {
+                        deg: 3
+                    }
+                },
+                {
+                    area: "中科廠",
+                    water:{
+                        number: 2,
+                        capacity: 2000.0,
+                        storage_now: 2000.0,
+                        storage_before: 2000.0
+                    },
+                    power: {
+                        pow_gen: 1000.0,
+                        pow_use: 800.0
+                    },
+                    earthquake: {
+                        deg: 5
+                    }
+                }, 
+                {
+                    area: "南科廠",
+                    water:{
+                        number: 1,
+                        capacity: 2000.0,
+                        storage_now: 1000.0,
+                        storage_before: 900.0
+                    },
+                    power: {
+                        pow_gen: 1000.0,
+                        pow_use: 1000.0
+                    },
+                    earthquake: {
+                        deg: 7
+                    }
+                }
+            ]
+        }
+    },
+    methods: {
+        goPower(){
+            this.$router.push('/power');
+        },
+        goWater(){
+            this.$router.push('/water');
+        },
+        goEarthquake(){
+            this.$router.push('/earthquake');
         }
     }
 }
@@ -12,26 +95,19 @@ export default{
 </script>
 
 <template>
-    <div class="frame">
-        <div class="title">
-            <div class="content" v-for="name in title">{{ name }}</div>
+    <div class="frame ">
+        <div class="outbox head">
+            <div class="area">廠區</div>
+            <div class="water" @click="goWater">現在水量(萬立方公尺)</div>
+            <div class="power" @click="goPower">現在用電量(萬瓩)</div>
+            <div class="earth" @click="goEarthquake">最近地震</div>
         </div>
-        <a class="water box" href="/water">
-            <div >
-                <div class="cl_name">水量(萬立方公尺)</div>
-            </div>
-        </a>
-        <a class="power box" href="/power">
-            <div >
-                <div class="cl_name">電力(萬瓩)</div>
-            </div>
-        </a>    
-        <a class="earthquake box" href="/earthquake">
-            <div >
-                <div class="cl_name">最近地震</div>
-            </div>
-        </a>
-        
+        <div class="outbox content" v-for="item in datas" >
+            <div class="area"><div class="area_name">{{ item.area }}</div></div>
+            <water_unit class="water" @click="goWater" :msg="item.water"></water_unit>
+            <power_unit class="power" @click="goPower" :msg="item.power"></power_unit>
+            <earthquake_unit class="earth" @click="goEarthquake" :msg="item.earthquake"></earthquake_unit>
+        </div>
     </div>
 </template>
 
@@ -39,47 +115,64 @@ export default{
 .frame{
     width: 100%;
     height: fit-content;
+    margin: 0px;
+}
+.head{
+    height: 100px;
+    font-weight: 1000;
+    padding-top: 30px;
+    font-size: 30px;
+    text-align: center; 
+}
+
+.outbox{
     display: flex;
+    width: 100%;
+    margin: auto;
+    border-bottom: 1px solid lightgray ;
 }
 
-.title{
-   width: 200px;
-   margin-top: 5%;
-   margin-right: 5%;
-   background-color: aqua;
+.content{
+    height: 200px;
+    position: relative;
 }
 
-.box{
-    display: block;
-    margin-right: 3%;
+.area{
+    width: 19%;
+    font-size: 30px;
+    flex-grow: 0;
+}
+
+.content .area{
+    position: relative;
+}
+
+.area_name{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .power{
-    width: 25%;
-    background-color: pink;
+    width: 27%;
+}
+
+.earth{
+    width: 27%;
 }
 
 .water{
-    width: 25%;
-    background-color: aquamarine;
+    width: 27%;
+    /* border: 1px solid; */
 }
 
-.earthquake{
-    width: 25%;
-    background-color: bisque;
-}
-.content{
-    margin: auto;
-    padding: 25% 0%;
-}
-
-.cl_name{
+a{
     text-decoration: none !important;
-    text-align: center;
-    padding-top: 5%;
-    height: 5%;
     color: black;
-    font-size: 25px;
-    font-weight: bold;
+    display: block;
 }
+
+
 </style>
