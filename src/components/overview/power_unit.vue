@@ -91,8 +91,8 @@ export default{
     position: absolute;
     width: 20%;
     height: 50%;
-    bottom: 50%;
-    left: 50%;
+    bottom: 46%;
+    left: 49.5%;
     transform-origin: bottom center;
     /* border: 1px solid blue; */
 }

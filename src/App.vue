@@ -23,7 +23,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <style>
 header {
-  width: 100%;
+  width: auto;
   height: 140px;
   background-color: #97CBFF ;
   display: flex;
