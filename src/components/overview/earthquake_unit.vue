@@ -36,9 +36,12 @@ export default{
         
     },
     watch: {
-        msg() {
-        this.compute_data();
-        }
+        msg: {
+        handler() {
+            this.compute_data();
+        },
+        deep: true
+    }
     },
     mounted() {
         this.compute_data();

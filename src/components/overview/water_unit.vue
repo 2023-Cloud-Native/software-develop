@@ -54,9 +54,12 @@ export default{
         
     },
     watch: {
-        msg() {
-        this.compute_data();
-        }
+        msg: {
+        handler() {
+            this.compute_data();
+        },
+        deep: true
+    }
     },
     mounted() {
         this.compute_data();
@@ -69,7 +72,7 @@ export default{
     <div class="wrapper">
         <div class="image_box">
             <img class="image" :src="img_route">
-            <div class="water_amount" > {{ persent }} % </div>
+            <div class="water_amount" > {{ format_out(persent) }} % </div>
         </div>
 
         <div class="box">
