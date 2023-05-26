@@ -1,10 +1,11 @@
 <script setup>
-
+  import LineChart from '../components/LineChart.vue'
 </script>
 
 <template>
     <div class="frame">
-        <div class="test"> this is the water view</div>
+      <h2>This is water view</h2>
+        <LineChart />
     </div>
 </template>
 
@@ -14,10 +15,4 @@
     height: fit-content;
 }
 
-.test{
-    width: 1920px;
-    height: 1080px;
-    text-align: center;
-    padding-top: 300px;
-}
 </style>
