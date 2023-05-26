@@ -99,7 +99,9 @@ export default{
                     var apiEarth = this.apiData.Earthquake;
                     var apiPower = this.apiData.Electricity;
                     var apiWater = this.apiData.Reservoir;
-                    this.compute_power(apiPower);                
+                    this.compute_power(apiPower);   
+                    this.compute_water(apiWater);
+                    this.compute_earth(apiEarth);             
                 }).catch(error => {
                     console.error(error);
                 });
@@ -123,6 +125,36 @@ export default{
 
         },
         compute_water(water){
+            this.datas[0].water.capacity = water.新竹.total_capacity;
+            this.datas[0].water.storage_now = water.新竹.current_capacity;
+            this.datas[0].water.storage_before = water.新竹.current_capacity + water.新竹.outflow - water.新竹.inflow ;
+            this.datas[1].water.capacity = water.臺中.total_capacity;
+            this.datas[1].water.storage_now = water.臺中.current_capacity;
+            this.datas[1].water.storage_before = water.臺中.current_capacity + water.新竹.outflow - water.新竹.inflow ;
+            this.datas[2].water.capacity = water.臺南.total_capacity;
+            this.datas[2].water.storage_now = water.臺南.current_capacity;
+            this.datas[2].water.storage_before = water.臺南.current_capacity + water.新竹.outflow - water.新竹.inflow ;
+        },
+        compute_earth(data){
+            var level = [0, 0.8, 2.5, 8.0, 25, 80, 250, 800];
+            var pgaN = data.新竹[0].pga;
+            var pgaC = data.臺中[0].pga;
+            var pgaS = data.臺南[0].pga;
+            console.log(pgaN);
+            this.datas[0].earthquake.deg = 0;
+            this.datas[1].earthquake.deg = 0;
+            this.datas[2].earthquake.deg = 0;
+            for(var i=0; i<8; i++){
+                if(pgaN > level[i]) {
+                    this.datas[0].earthquake.deg = i;
+                }
+                if(pgaC > level[i]) {
+                    this.datas[1].earthquake.deg = i;
+                }
+                if(pgaS > level[i]) {
+                    this.datas[2].earthquake.deg = i;
+                }
+            }
             
         }
     }
