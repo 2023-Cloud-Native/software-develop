@@ -2,6 +2,10 @@
 import water_unit from '@/components/overview/water_unit.vue';
 import power_unit from '../components/overview/power_unit.vue';
 import earthquake_unit from '../components/overview/earthquake_unit.vue';
+import axios from 'axios';
+
+axios.defaults.timeout = 8000;
+axios.defaults.baseURL = "http://192.168.31.46"
 
 export default{
     components: {
@@ -11,27 +15,16 @@ export default{
   },
     data() {
         return {
+            apiurl: "http://localhost:3000/api",
+            apiData: {},
+            apiEarth: {},
+            apiPower: {},
+            apiWater: {},
             datas: [
-                {
-                    area: "桃園廠",
-                    water:{
-                        number: 1,
-                        capacity: 2000.0,
-                        storage_now: 1000.0,
-                        storage_before: 900.0
-                    },
-                    power: {
-                        pow_gen: 1000.0,
-                        pow_use: 700.0
-                    },
-                    earthquake: {
-                        deg: 1
-                    }
-                }, 
                 {
                     area: "竹科廠",
                     water:{
-                        number: 3,
+                        number: 4,
                         capacity: 2000.0,
                         storage_now: 20.0,
                         storage_before: 100.0
@@ -63,7 +56,7 @@ export default{
                 {
                     area: "南科廠",
                     water:{
-                        number: 1,
+                        number: 4,
                         capacity: 2000.0,
                         storage_now: 1000.0,
                         storage_before: 900.0
@@ -79,7 +72,38 @@ export default{
             ]
         }
     },
+    mounted() {
+        this.fetchData(); // 页面加载时执行 GET 请求
+    },
+    watch: {
+        // 监听 apiData 的变化，在数据变化时执行 GET 请求
+        apiData: {
+            handler() {
+                this.fetchData();
+            },
+        deep: true,
+        },
+    },
     methods: {
+        fetchData() {
+            var status ;
+            axios.get(this.apiurl, {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET',
+                    'Access-Control-Allow-Headers': 'Content-Type'
+                }
+                }).then(response => {
+                    this.apiData = response.data;
+                    // Convert Proxy objects to JSON and parse it back
+                    var apiEarth = this.apiData.Earthquake;
+                    var apiPower = this.apiData.Electricity;
+                    var apiWater = this.apiData.Reservoir;
+                    this.compute_power(apiPower);                
+                }).catch(error => {
+                    console.error(error);
+                });
+        },
         goPower(){
             this.$router.push('/power');
         },
@@ -88,6 +112,18 @@ export default{
         },
         goEarthquake(){
             this.$router.push('/earthquake');
+        },
+        compute_power(power){
+            this.datas[0].power.pow_gen = power.north_generate;
+            this.datas[1].power.pow_gen = power.central_generate;
+            this.datas[2].power.pow_gen = power.south_generate;
+            this.datas[0].power.pow_use = power.north_usage;
+            this.datas[1].power.pow_use = power.central_usage;
+            this.datas[2].power.pow_use = power.south_usage;
+
+        },
+        compute_water(water){
+            
         }
     }
 }

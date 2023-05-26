@@ -26,6 +26,9 @@ export default{
             if ( rotate  < 0) {
                 this.rot_deg =  -90.0;
             }
+            else if(rotate > 0.5){
+                this.rot_deg = 90.0;
+            }
             else{
                 this.rot_deg = rotate * 2 * 180; // rotate * 2 * 100 * (180 / 100) 
                 this.rot_deg = this.rot_deg - 90;
@@ -42,9 +45,12 @@ export default{
         
     },
     watch: {
-        msg() {
-        this.compute_data();
-        }
+        msg: {
+        handler() {
+            this.compute_data();
+        },
+        deep: true
+    }
     },
     mounted() {
         this.compute_data();
