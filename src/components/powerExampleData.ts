@@ -5,13 +5,15 @@ export const data = {
         label: 'Example Data 1',
         backgroundColor: '#f87979',
         borderColor: '#f87979',
-        data: [40, 39, 10, 40, 39, 80, 40]
+        fill: true,
+        data: [50, 60, 55, 62, 66, 70]
       },
       {
         label: 'Example Data 2',
         backgroundColor: '#cbf3f0',
         borderColor: '#cbf3f0',
-        data: [20, 19, 50, 10, 80, 23, 13]
+        fill: true,
+        data: [60, 55, 50, 44, 30, 23, 13]
       }
     ]
   }

@@ -14,10 +14,10 @@ export const data = {
         data: [20, 19, 50, 10, 80, 23, 13]
       }
     ]
-  }
+}
   
-  export const options = {
-    responsive: true,
-    maintainAspectRatio: false
-  }
+export const options = {
+  responsive: true,
+  maintainAspectRatio: false
+}
   
