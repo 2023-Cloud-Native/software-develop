@@ -1,5 +1,5 @@
 <script setup>
-    import LineChart from '../components/LineChart.vue'
+    import LineChart from '../components/lineChart/LineChart.vue'
     
 </script>
 
@@ -7,7 +7,6 @@
     <div class="frame">
       <h2 class="middle">電力</h2>
         <LineChart :data="data"/>
-    </div>
     <form method="get" id="powerDateTime">
       <div class="inputBlock">
         <label for="start">開始時間：</label>
@@ -20,6 +19,7 @@
         <input type="date"/>
       </div>
     </form>
+  </div>
 </template>
 
 <style scoped>
@@ -39,7 +39,7 @@
 }
 .inputBlock {
     display: inline-block;
-    padding: 1em;
+    padding: 3em;
     width: auto;
     height: 20%;
 }
