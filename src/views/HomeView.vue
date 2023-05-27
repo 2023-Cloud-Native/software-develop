@@ -5,7 +5,7 @@ import earthquake_unit from '../components/overview/earthquake_unit.vue';
 import axios from 'axios';
 
 axios.defaults.timeout = 8000;
-axios.defaults.baseURL = "http://192.168.31.46"
+axios.defaults.baseURL = "http://127.0.0.1"
 
 export default{
     components: {
