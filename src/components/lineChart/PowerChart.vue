@@ -26,7 +26,9 @@
       desktopHeight: {
         type: String,
         default: '500px'
-      }
+      },
+      start: String,
+      end: String
     },
     data() {
       return {
@@ -130,14 +132,28 @@
         var labels = [];
         var datasets = [[],[],[]];
         var last_time;
-        console.log(data);
+        //console.log(data);
         for(let x of data){
           labels.push(x.updated_time);
-          datasets[0].push(x.north_usage/x.north*100);
+          datasets[0].push(x.north_usage/x.north_generate*100);
           datasets[1].push(x.central_usage/x.central_generate*100);
-          datasets[2].push(x.south_usage/x.south*100);
+          datasets[2].push(x.south_usage/x.south_generate*100);
         }
-        //console.log(datasets);
+        while(labels.length>30){ 
+          // select even-indexed elements for too much data to show
+          labels = labels.filter(function(element, index, array) {
+            return (index % 2 === 0);
+          });
+          datasets[0] = datasets[0].filter(function(element, index, array) {
+            return (index % 2 === 0);
+          });
+          datasets[1] = datasets[1].filter(function(element, index, array) {
+            return (index % 2 === 0);
+          });
+          datasets[2] = datasets[2].filter(function(element, index, array) {
+            return (index % 2 === 0);
+          });
+        }
         this.$refs.line.chart.data.labels = labels;
         this.$refs.line.chart.data.datasets[0].data = datasets[0];
         this.$refs.line.chart.data.datasets[1].data = datasets[1];

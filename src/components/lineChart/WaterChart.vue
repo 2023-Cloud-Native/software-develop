@@ -112,24 +112,26 @@
     },
     methods: {
       fetchData() {
-              axios.get(this.apiurl, {
-                  headers: {
-                      'Access-Control-Allow-Origin': '*',
-                      'Access-Control-Allow-Methods': 'GET',
-                      'Access-Control-Allow-Headers': 'Content-Type'
-                  },
-                  params: {
-                    start: this.start? this.start:this.currentDate(-4),
-                    end: this.end? this.end:this.currentDate()
-                  }
-                  }).then(response => {
-                    if(this.apiData !== response.data)
-                      this.apiData = response.data;
-                      // Convert Proxy objects to JSON and parse it back
-                      this.update_chart(this.apiData);
-                  }).catch(error => {
-                      console.error(error);
-                  });
+        console.log(this.start);
+        console.log(this.end);
+        axios.get(this.apiurl, {
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET',
+            'Access-Control-Allow-Headers': 'Content-Type'
+          },
+          params: {
+            start: this.start? this.start:this.currentDate(-4),
+            end: this.end? this.end:this.currentDate()
+          }
+          }).then(response => {
+            if(this.apiData !== response.data)
+              this.apiData = response.data;
+              // Convert Proxy objects to JSON and parse it back
+              this.update_chart(this.apiData);
+          }).catch(error => {
+              console.error(error);
+          });
       },
       update_chart(data){
         var labels = [];
@@ -145,7 +147,21 @@
         for(let x of data.臺南){
           datasets[2].push(x.percentage*100);
         }
-        //console.log(datasets);
+        while(labels.length>30){ 
+          // select even-indexed elements for too much data to show
+          labels = labels.filter(function(element, index, array) {
+            return (index % 2 === 0);
+          });
+          datasets[0] = datasets[0].filter(function(element, index, array) {
+            return (index % 2 === 0);
+          });
+          datasets[1] = datasets[1].filter(function(element, index, array) {
+            return (index % 2 === 0);
+          });
+          datasets[2] = datasets[2].filter(function(element, index, array) {
+            return (index % 2 === 0);
+          });
+        }
         this.$refs.line.chart.data.labels = labels;
         this.$refs.line.chart.data.datasets[0].data = datasets[0];
         this.$refs.line.chart.data.datasets[1].data = datasets[1];

@@ -7,6 +7,12 @@
   export default {
       components: {
           LineChart
+    },
+    data(){
+      return {
+        start: '',
+        end: '',
+      }
     }
   }
 </script>
@@ -14,20 +20,18 @@
 <template>
     <div class="frame">
       <h2 class="middle">電力</h2>
-      <LineChart />
+      <LineChart :start="start" :end="end"/>
     </div>
-    <form method="get" id="waterDateTime">
-      <div class="inputBlock">
-        <label for="start">開始時間：</label>
-        <br />
-        <input type="date"/>
-      </div>
-      <div class="inputBlock">
-        <label for="end">結束時間：</label>
-        <br/>
-        <input type="date"/>
-      </div>
-    </form>
+    <div class="inputBlock">
+      <label for="start">開始時間：</label>
+      <br />
+      <input v-model="start" type="date" />
+    </div>
+    <div class="inputBlock">
+      <label for="end">結束時間：</label>
+      <br/>
+      <input v-model="end" type="date"/>
+    </div>
     
     
 </template>
