@@ -13,22 +13,22 @@ export default{
     },
     data() {
         return {
-           img_route: "static/icon/earthquake/green.png",
+           img_route: "/static/icon/earthquake/green.png",
            judge: "good"
         }
     },
     methods: {
         compute_data() {
             if(this.msg.deg < 4) {
-                this.img_route = "static/icon/earthquake/green.png";
+                this.img_route = "/static/icon/earthquake/green.png";
                 this.judge = "good";
             }
             else if(this.msg.deg > 5) {
-                this.img_route = "static/icon/earthquake/red.png";
+                this.img_route = "/static/icon/earthquake/red.png";
                 this.judge = "danger";
             }
             else {
-                this.img_route = "static/icon/earthquake/yellow.png";
+                this.img_route = "/static/icon/earthquake/yellow.png";
                 this.judge = "warning";
             }
         },
@@ -53,6 +53,11 @@ export default{
 </script>
 
 <template>
+    <div style="display:none">
+        <img src="/static/icon/earthquake/yellow.png">
+        <img src="/static/icon/earthquake/red.png">
+        <img src="/static/icon/earthquake/green.png">
+    </div>
     <div class="wrapper">
         <div class="image_box">
             <img class="image" :src="img_route">

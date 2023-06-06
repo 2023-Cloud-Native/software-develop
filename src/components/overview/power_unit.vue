@@ -62,14 +62,13 @@ export default{
 <template>
     <div class="wrapper">
         <div class="image_box">
-            <img class="bg_img" src="static/icon/power/pow.png">
-            <img class="ptr_img" :style="{ transform: 'translate(-50%, 50%) rotate(' + rot_deg + 'deg)' }" src="static/icon/power/pointer.png">
+            <img class="bg_img" src="/static/icon/power/pow.png">
+            <img class="ptr_img" :style="{ transform: 'translate(-50%, 50%) rotate(' + rot_deg + 'deg)' }" src="/static/icon/power/pointer.png">
             <div class="cur_use" :class="judge">{{ format_out(msg.pow_use) }} </div>
             <div class="half_gen">{{ half_gen }}</div>
             <div class="pow_gen" >{{ msg.pow_gen }}</div>
         </div>
 
-        
     </div>
 </template>
 

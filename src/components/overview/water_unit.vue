@@ -14,8 +14,8 @@ export default{
     },
     data() {
         return {
-            img_route: "static/icon/water/yellow.png",
-            img_path: "static/icon/water/", //C:\Users\diane\cloud_frontend\src\assets\icon\water
+            img_route: "/static/icon/water/yellow.png",
+            img_path: "/static/icon/water/", //C:\Users\diane\cloud_frontend\src\assets\icon\water
             img_name: [
                 "red.png",
                 "pink.png",
@@ -74,7 +74,13 @@ export default{
             <img class="image" :src="img_route">
             <div class="water_amount" > {{ format_out(persent) }} % </div>
         </div>
-
+        <div style="display:none">
+            <img src="/static/icon/water/yellow.png">
+            <img src="/static/icon/water/blue.png">
+            <img src="/static/icon/water/green.png">
+            <img src="/static/icon/water/pink.png">
+            <img src="/static/icon/water/red.png">
+        </div>
         <div class="box">
             <div class="content" >水庫個數: &nbsp{{ msg.number }} </div>
             <div class="content" >總水量: &nbsp{{ format_out(msg.capacity) }} </div>
