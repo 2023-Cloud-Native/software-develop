@@ -5,7 +5,9 @@ export default{
         msg: {
             type: Object, // 对象类型
             default: () => ({ // 初始值为一个函数返回的对象
-            deg: 3
+            deg: 3,
+            time: "2023-05-22 04:25:44",
+            source: "埔里鎮"
             })
         }
     },
@@ -55,6 +57,8 @@ export default{
         <div class="image_box">
             <img class="image" :src="img_route">
             <div class="text" :class="judge" >廠區震度: {{msg.deg}}</div>
+            <div class="text1" :class="judge" >震源: {{msg.source}}</div>
+            <div class="text2" :class="judge" >時間: {{msg.time}}</div>
         </div>
     </div>
 </template>
@@ -72,7 +76,7 @@ export default{
 
 .image{
     position: absolute;
-    top: 40%;
+    top: 22%;
     left: 0%;
     width: 12%;
     height: 20%;
@@ -80,12 +84,27 @@ export default{
 
 .text{
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 35%;
     transform: translate(-50%, -50%);
-    font-size: 25px;
+    font-size: 20px;
 }
 
+.text1{
+    position: absolute;
+    top: 50%;
+    left: 37%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+}
+
+.text2{
+    position: absolute;
+    top: 70%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+    font-size: 15px;
+}
 .good{
     font-weight: 500;
     color: black;

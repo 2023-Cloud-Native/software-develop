@@ -27,6 +27,7 @@ header {
   height: 140px;
   background-color: #97CBFF ;
   display: flex;
+  font-family: 微軟正黑體, Arial, Helvetica, sans-serif ;
 }
 
 
@@ -58,6 +59,7 @@ nav {
   justify-content: flex-end;
   display: flex;
   margin-right: 50px;
+  font-size: 20px;
 }
 
 a{

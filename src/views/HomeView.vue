@@ -5,7 +5,6 @@ import earthquake_unit from '../components/overview/earthquake_unit.vue';
 import axios from 'axios';
 
 axios.defaults.timeout = 8000;
-axios.defaults.baseURL = "http://127.0.0.1"
 
 export default{
     components: {
@@ -34,7 +33,9 @@ export default{
                         pow_use: 500.0
                     },
                     earthquake: {
-                        deg: 3
+                        deg: 3,
+                        time: "2023-05-22 04:25:44",
+                        source: "埔里縣"
                     }
                 },
                 {
@@ -50,7 +51,9 @@ export default{
                         pow_use: 800.0
                     },
                     earthquake: {
-                        deg: 5
+                        deg: 5,
+                        time: "2023-05-22 04:25:44",
+                        source: "埔里縣"
                     }
                 }, 
                 {
@@ -66,7 +69,9 @@ export default{
                         pow_use: 1000.0
                     },
                     earthquake: {
-                        deg: 7
+                        deg: 7,
+                        time: "2023-05-22 04:25:44",
+                        source: "埔里縣"
                     }
                 }
             ]
@@ -101,7 +106,7 @@ export default{
                     var apiWater = this.apiData.Reservoir;
                     this.compute_power(apiPower);   
                     this.compute_water(apiWater);
-                    this.compute_earth(apiEarth);
+                    this.compute_earth(apiEarth);             
                 }).catch(error => {
                     console.error(error);
                 });
@@ -122,6 +127,7 @@ export default{
             this.datas[0].power.pow_use = power.north_usage;
             this.datas[1].power.pow_use = power.central_usage;
             this.datas[2].power.pow_use = power.south_usage;
+
         },
         compute_water(water){
             this.datas[0].water.capacity = water.新竹.total_capacity;
@@ -139,7 +145,12 @@ export default{
             var pgaN = data.新竹[0].pga;
             var pgaC = data.臺中[0].pga;
             var pgaS = data.臺南[0].pga;
-            console.log(pgaN);
+            this.datas[0].earthquake.time = data.新竹[0].observed_time;
+            this.datas[1].earthquake.time = data.臺中[0].observed_time;
+            this.datas[2].earthquake.time = data.臺南[0].observed_time;
+            this.datas[0].earthquake.source = data.新竹[0].source;
+            this.datas[1].earthquake.source = data.臺中[0].source;
+            this.datas[2].earthquake.source = data.臺南[0].source;
             this.datas[0].earthquake.deg = 0;
             this.datas[1].earthquake.deg = 0;
             this.datas[2].earthquake.deg = 0;
