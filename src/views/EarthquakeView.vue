@@ -96,7 +96,7 @@ export default{
         computeDatas(apidata){
             console.log(apidata);
             
-            this.datas = [];
+            // this.datas = [];
             for(var i=0; i<apidata.length; i++){
                 let data = {
                     source: "",

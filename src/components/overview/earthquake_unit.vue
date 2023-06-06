@@ -7,7 +7,7 @@ export default{
             default: () => ({ // 初始值为一个函数返回的对象
             deg: 3,
             time: "2023-05-22 04:25:44",
-            source: "埔里鎮"
+            source: "埔里縣"
             })
         }
     },
@@ -59,6 +59,7 @@ export default{
             <div class="text" :class="judge" >廠區震度: {{msg.deg}}</div>
             <div class="text1" :class="judge" >震源: {{msg.source}}</div>
             <div class="text2" :class="judge" >時間: {{msg.time}}</div>
+
         </div>
     </div>
 </template>
@@ -69,7 +70,6 @@ export default{
     position: relative;
     width: 60%;
     margin: 2%;
-    text-align: center;
     display: block;
     /* border: 1px solid green; */
 }
@@ -78,30 +78,29 @@ export default{
     position: absolute;
     top: 22%;
     left: 0%;
-    width: 12%;
-    height: 20%;
+    width: 8%;
+    height: 14%;
 }
 
 .text{
     position: absolute;
     top: 30%;
-    left: 35%;
+    left: 30%;
     transform: translate(-50%, -50%);
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .text1{
     position: absolute;
     top: 50%;
-    left: 37%;
+    left: 32%;
     transform: translate(-50%, -50%);
-    font-size: 20px;
+    font-size: 22px;
 }
-
 .text2{
     position: absolute;
     top: 70%;
-    left: 35%;
+    left: 30%;
     transform: translate(-50%, -50%);
     font-size: 15px;
 }

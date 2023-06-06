@@ -12,14 +12,17 @@
   },
   "dependencies": {
     "-": "^0.0.1",
+    "@vue/compiler-sfc": "^3.3.4",
     "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "concurrently": "^8.0.1",
     "http-proxy-middleware": "^2.0.6",
+
     "chart.js": "^4.3.0",
     "vue": "^3.2.47",
     "vue-chartjs": "^5.2.0",
     "vue-router": "^4.1.6"
+
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.1",
