@@ -1,23 +1,59 @@
-<script setup>
+<script>
+  import LineChart from '../components/lineChart/PowerChart.vue'
+  import axios from 'axios';
+  axios.defaults.timeout = 8000;
+  axios.defaults.baseURL = "http://127.0.0.1"
 
+  export default {
+      components: {
+          LineChart
+    },
+    data(){
+      return {
+        start: '',
+        end: '',
+      }
+    }
+  }
 </script>
 
 <template>
     <div class="frame">
-        <div class="test"> this is the power view</div>
+      <h2 class="middle">電力</h2>
+      <LineChart :start="start" :end="end"/>
     </div>
+    <div class="inputBlock">
+      <label for="start">開始時間：</label>
+      <br />
+      <input v-model="start" type="date" />
+    </div>
+    <div class="inputBlock">
+      <label for="end">結束時間：</label>
+      <br/>
+      <input v-model="end" type="date"/>
+    </div>
+    
+    
 </template>
 
 <style scoped>
 .frame{
     width: 100%;
     height: fit-content;
+    margin-top: 2.5em;
 }
-
-.test{
-    width: 1920px;
-    height: 1080px;
-    text-align: center;
-    padding-top: 300px;
+.desc_block {
+    float: right;
+    width: 30%;
+    margin: 2em;
+}
+.middle {
+  text-align: center;
+}
+.inputBlock {
+    display: inline-block;
+    padding: 3em;
+    width: auto;
+    height: 20%;
 }
 </style>

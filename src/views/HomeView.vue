@@ -5,7 +5,7 @@ import earthquake_unit from '../components/overview/earthquake_unit.vue';
 import axios from 'axios';
 
 axios.defaults.timeout = 8000;
-axios.defaults.baseURL = "http://192.168.31.46"
+axios.defaults.baseURL = "http://127.0.0.1"
 
 export default{
     components: {
@@ -101,7 +101,7 @@ export default{
                     var apiWater = this.apiData.Reservoir;
                     this.compute_power(apiPower);   
                     this.compute_water(apiWater);
-                    this.compute_earth(apiEarth);             
+                    this.compute_earth(apiEarth);
                 }).catch(error => {
                     console.error(error);
                 });
@@ -122,7 +122,6 @@ export default{
             this.datas[0].power.pow_use = power.north_usage;
             this.datas[1].power.pow_use = power.central_usage;
             this.datas[2].power.pow_use = power.south_usage;
-
         },
         compute_water(water){
             this.datas[0].water.capacity = water.新竹.total_capacity;
