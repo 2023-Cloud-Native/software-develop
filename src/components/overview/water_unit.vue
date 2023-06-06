@@ -1,4 +1,9 @@
 <script>
+import Yellow from "/static/icon/water/yellow.png";
+import Red from "/static/icon/water/red.png";
+import Pink from "/static/icon/water/pink.png";
+import Green from "/static/icon/water/green.png";
+import Blue from "/static/icon/water/blue.png";
 
 export default{
     props: {
@@ -13,15 +18,14 @@ export default{
         }
     },
     data() {
-        return {
-            img_route: "/static/icon/water/yellow.png",
-            img_path: "/static/icon/water/", //C:\Users\diane\cloud_frontend\src\assets\icon\water
-            img_name: [
-                "red.png",
-                "pink.png",
-                "yellow.png",
-                "green.png",
-                "blue.png"
+        return { 
+            imgSrc: Yellow,
+            imgSrcs: [
+                Red,
+                Pink,
+                Yellow,
+                Green,
+                Blue
             ],
             persent: 50.0,
             change_class: 'same', // danger good same
@@ -37,7 +41,7 @@ export default{
             var img_id = Math.floor(this.persent / 20);
             if(img_id < 0) img_id = 0;
             if(img_id > 4) img_id = 4;
-            this.img_route = this.img_path + this.img_name[img_id];
+            this.imgSrc = this.imgSrcs[img_id];
             this.change_persent = (storage_now - storage_before) * 100;
             if (this.change_persent > 0) {
                 this.change_class = 'good';
@@ -71,15 +75,8 @@ export default{
 <template>
     <div class="wrapper">
         <div class="image_box">
-            <img class="image" :src="img_route">
+            <img class="image" :src="imgSrc">
             <div class="water_amount" > {{ format_out(persent) }} % </div>
-        </div>
-        <div style="display:none">
-            <img src="/static/icon/water/yellow.png">
-            <img src="/static/icon/water/blue.png">
-            <img src="/static/icon/water/green.png">
-            <img src="/static/icon/water/pink.png">
-            <img src="/static/icon/water/red.png">
         </div>
         <div class="box">
             <div class="content" >水庫個數: &nbsp{{ msg.number }} </div>
