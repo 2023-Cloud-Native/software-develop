@@ -95,14 +95,13 @@ export default{
                 }
                 }).then(response => {
                     this.apiData = response.data;
-                    
                     // Convert Proxy objects to JSON and parse it back
                     var apiEarth = this.apiData.Earthquake;
                     var apiPower = this.apiData.Electricity;
                     var apiWater = this.apiData.Reservoir;
                     this.compute_power(apiPower);   
                     this.compute_water(apiWater);
-                    this.compute_earth(apiEarth);    
+                    this.compute_earth(apiEarth);
                 }).catch(error => {
                     console.error(error);
                 });
