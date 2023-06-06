@@ -95,13 +95,14 @@ export default{
                 }
                 }).then(response => {
                     this.apiData = response.data;
+                    
                     // Convert Proxy objects to JSON and parse it back
                     var apiEarth = this.apiData.Earthquake;
                     var apiPower = this.apiData.Electricity;
                     var apiWater = this.apiData.Reservoir;
                     this.compute_power(apiPower);   
                     this.compute_water(apiWater);
-                    this.compute_earth(apiEarth);             
+                    this.compute_earth(apiEarth);    
                 }).catch(error => {
                     console.error(error);
                 });
@@ -122,7 +123,6 @@ export default{
             this.datas[0].power.pow_use = power.north_usage;
             this.datas[1].power.pow_use = power.central_usage;
             this.datas[2].power.pow_use = power.south_usage;
-
         },
         compute_water(water){
             this.datas[0].water.capacity = water.新竹.total_capacity;
